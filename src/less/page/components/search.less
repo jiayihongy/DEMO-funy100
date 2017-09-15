@@ -1,0 +1,150 @@
+@mainclr: #666;
+@aclr: #999;
+@ahclr: #d60d03;
+@lightgray: #e5e5e5;
+.bgi(@x;@y;@url:"../../images/sprite.png"){
+    background:url(@url) no-repeat @x @y
+}
+.search {
+    height: 114px;
+    border: 1px solid @lightgray;
+    border-radius: 12px;
+    position: relative;
+    .tabs {
+        position: absolute;
+        top: -10px;
+        left: 230px;
+        font-size: 14px;
+        color: #000;
+        text-align: center;
+        li {
+            display: inline-block;
+            width: 78px;
+            height: 25px;
+            border: 1px solid #f8d0bf;
+            border-radius: 6px 6px 0 0;
+            background: #fff;
+            line-height: 25px;
+            vertical-align: bottom;
+            margin-left: -3px;
+            cursor: pointer;
+            &.acive{
+                width: 79px;
+                height: 26px;
+                line-height: 26px;
+                color: #fff;
+                text-shadow: 1px 1px 2px #AE1400;
+                background: #ff0000;
+                border-color: #c40d0e;
+                position: relative;
+                z-index: 666;
+                border-bottom: none;             
+            }
+        }
+    }
+    .search-wrap {
+        height: 64px;
+        margin-top: 16px;
+        border: 1px solid #c40d0e;
+        background: red;
+        border-radius: 8px;
+        position: relative;
+        box-shadow: 1px 1px 2px @aclr;
+        .attach {
+            position: absolute;
+            width: 160px;
+            height: 122px;
+            top: -20px;
+            left: 33px;
+            .bgi(-20px;
+            -2277px);
+        }
+        .form {
+            margin-left: 226px;
+            margin-top:20px;
+            position: relative;
+            form {
+                input[type="text"] {
+                    width:395px;
+                    height:22px;
+                    border:0;
+                    box-shadow: inset 2px 2px 3px rgba(0,0,0,0.25);
+                    padding-left: 10px;
+                    border-radius:4px;
+                    &::placeholder{
+                        color: #ea7a7a;
+                    }
+                }
+                input[type="submit"] {
+                    height:26px;
+                    width:62px;
+                    border:0;
+                    .bgi(-20px;-348px);
+                    cursor: pointer;
+                    position: absolute;
+                    top: -2px;
+                    left: 415px;
+                }
+            }
+        }
+        .search-msg {
+            width:202px;
+            height: inherit;
+            color: #fff;
+            padding-top: 15px;
+            padding-right: 36px;
+        }
+    }
+    .scroll-wrap{
+        padding-left: 226px;
+        margin-top: 10px;
+        position: relative;
+        .scroll-msg{
+            width: 405px;
+            height: 16px;
+            overflow-y: hidden;
+            .bgi(-20px;-122px);
+            position: relative;
+            .scorll-ul{
+                position: absolute;
+                left: 0;
+                top: 0;
+                li{
+                    a{
+                        display: block;
+                        margin-left: 60px;
+                        padding-right: 56px;
+                        width: 289px;
+                        overflow: hidden;
+                        white-space: nowrap;
+                        text-overflow: ellipsis;
+                        strong{
+                            font-weight: bold;
+                            color: @ahclr;
+                        }
+                        span:nth-of-type(2){
+                            color: #000;
+                        }
+                    }
+                }
+            }
+        }
+        .scroll-arr{
+            position: absolute;
+            top: -6px;
+            right: 0;
+            a{
+               height: 0;
+               width: 0;
+               display: block;
+              border: 5px solid transparent;
+              border-top-color: @ahclr;
+              &:first-child{
+                  border-color: transparent;
+                  border-bottom-color: @ahclr;
+                  margin-bottom: 5px;
+              }
+            }
+        }
+    }
+}
