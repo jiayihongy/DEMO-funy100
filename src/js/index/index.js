@@ -1,5 +1,59 @@
 define(["jquery", "template"], function($, template) {
-
+    /***************数据存储库*********************/
+    var Data = function() {
+        var obj = {};
+        var checkEle = [{
+                mother: '.hot-tab',
+                sons: 'li',
+                newCls: 'active',
+                mainWrap: '.hotshop-list'
+            }, {
+                mother: '.traffic-tab',
+                sons: 'li',
+                newCls: 'active',
+                mainWrap: '.tracffic-tupian'
+            },
+            {
+                mother: '.know-tab',
+                sons: 'li',
+                newCls: 'active',
+                mainWrap: '.know-list'
+            },
+            {
+                mother: '.juaner-tab',
+                sons: 'li',
+                newCls: 'active',
+                mainWrap: '.juaner-list'
+            }
+        ];
+        var scrollText = [{
+                name: '萱萱',
+                time: '5分钟前',
+                text: '史上最贵iPhone发布！探秘苹果新＂飞船＂总部'
+            },
+            {
+                name: '大壮',
+                time: '10分钟前',
+                text: '韩美军方高官将视察＂萨德＂基地了解系统运行情况'
+            },
+            {
+                name: '酒桶',
+                time: '30分钟前',
+                text: '泰国美女运毒被查 施美人计迷惑警察险逃脱'
+            },
+            {
+                name: '波澜哥',
+                time: '4分钟前',
+                text: '希拉里回忆录:自比《权游》中被游街示众的瑟曦'
+            }
+        ];
+        var arr = ['王保安画圈换钓鱼台七号院豪宅', '中国禁止进口洋垃圾', '西安体育学院原副院长被双开', '女大学生地铁晕倒 手机被顺走', '武汉一小学禁止女教师素颜上课'];
+        obj.checkEle = checkEle;
+        obj.scrollText = scrollText;
+        obj.arr = arr;
+        return obj;
+    }
+    var data = Data();
     /***************顶部bar切换*********************/
     $('.citys').on('click', 'a', function() {
         $(this).addClass('active').siblings().removeClass('active');
@@ -9,38 +63,14 @@ define(["jquery", "template"], function($, template) {
     $('.tabs').on('click', 'li', function() {
         $(this).addClass('acive').siblings().removeClass('acive');
         var $lis = $(this).parent().children();
-        var arr = ['王保安画圈换钓鱼台七号院豪宅', '中国禁止进口洋垃圾', '西安体育学院原副院长被双开', '女大学生地铁晕倒 手机被顺走', '武汉一小学禁止女教师素颜上课']
+
         var index = $(this).index();
-        $('.search-value').attr('placeholder', arr[index]);
+        $('.search-value').attr('placeholder', data.arr[index]);
     });
 
 
     /***************公共栏切换*********************/
-    var checkEle = [{
-            mother: '.hot-tab',
-            sons: 'li',
-            newCls: 'active',
-            mainWrap: '.hotshop-list'
-        }, {
-            mother: '.traffic-tab',
-            sons: 'li',
-            newCls: 'active',
-            mainWrap: '.tracffic-tupian'
-        },
-        {
-            mother: '.know-tab',
-            sons: 'li',
-            newCls: 'active',
-            mainWrap: '.know-list'
-        },
-        {
-            mother: '.juaner-tab',
-            sons: 'li',
-            newCls: 'active',
-            mainWrap: '.juaner-list'
-        }
-    ];
-    checkTab(checkEle);
+    checkTab(data.checkEle);
 
     function checkTab(arr) {
         $.each(arr, function(i, ele) {
@@ -53,37 +83,38 @@ define(["jquery", "template"], function($, template) {
     }
 
     /******************点击箭头滚动*********************/
-    var scrollText = [{
-            name: '萱萱',
-            time: '5分钟前',
-            text: '史上最贵iPhone发布！探秘苹果新＂飞船＂总部'
-        },
-        {
-            name: '大壮',
-            time: '10分钟前',
-            text: '韩美军方高官将视察＂萨德＂基地了解系统运行情况'
-        },
-        {
-            name: '酒桶',
-            time: '30分钟前',
-            text: '泰国美女运毒被查 施美人计迷惑警察险逃脱'
-        },
-        {
-            name: '波澜哥',
-            time: '4分钟前',
-            text: '希拉里回忆录:自比《权游》中被游街示众的瑟曦'
-        }
-    ];
-    $.each(scrollText, function(i, ele) {
-        var lis = `
-        <li>
-        <a href="#">
-            <strong>${ele.name}</strong>
-            <span>${ele.time}</span>
-            <span>${ele.text}</span>
-        </a>
-    </li>
-        `;
-        $('.scorll-ul').append(lis);
-    });
+    (function() {
+
+        $.each(data.scrollText, function(i, ele) {
+            var lis = ` <li>
+    <a href="#">
+        <strong>${ele.name}</strong>
+        <span>${ele.time}</span>
+        <span>${ele.text}</span>
+    </a>
+</li> `;
+            $('.scorll-ul').append(lis);
+        });
+        var $ul = $('.scorll-ul');
+        var countLi = $ul.children().length;
+        var liH = $ul.children().height();
+        var ulang = liH * countLi;
+        $('.scroll-arr .arr-up').on('click', function() {
+            var $this = $(this);
+            var top = $ul.position().top;
+            console.log(top);
+            if (top <= -(ulang - liH)) {
+                $ul.animate({
+                    "top": 0
+                }, 500);
+            } else {
+                $ul.stop().animate({
+                    "top": Math.ceil(top - $ul.children().height())
+                }, 500);
+            }
+
+
+
+        });
+    })();
 });
