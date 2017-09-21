@@ -290,7 +290,7 @@
 
         .active-wrap {
           margin-top: 15px;
-          padding: 0 24px 24px;
+          padding: 0 24px 20px;
 
           .active-details {
             .img-wrap {
@@ -331,7 +331,7 @@
 
             h2 {
               width: 100%;
-
+              margin-bottom: 2px;
               span {
                 float: left;
                 height: 34px;
@@ -343,23 +343,22 @@
               }
             }
 
-            p {
-              &+p {
-                margin-top: 2px;
-              }
+            ol{
+              
 
-              span {
-                display: block;
+              li {               
                 float: left;
+                margin: 0 2px 2px 0;
                 height: 40px;
                 width: 40px;
                 line-height: 40px;
                 text-align: center;
                 background: #ededed;
                 font-weight: 600;
-
-                &+span {
-                  margin-left: 3px;
+                cursor: pointer;
+                position: relative;
+                &.pic{
+                  
                 }
 
                 &.light {

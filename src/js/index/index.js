@@ -45,6 +45,18 @@ define(["jquery", "template"], function($, template) {
                 name: '波澜哥',
                 time: '4分钟前',
                 text: '希拉里回忆录:自比《权游》中被游街示众的瑟曦'
+            }, {
+                name: '留意哥',
+                time: '3分钟前',
+                text: '希拉里回忆录:自比《权游》中被游街示众的瑟曦'
+            }, {
+                name: '大波姐',
+                time: '2分钟前',
+                text: '希拉里回忆录:自比《权游》中被游街示众的瑟曦'
+            }, {
+                name: '兔八弟',
+                time: '1分钟前',
+                text: '希拉里回忆录:自比《权游》中被游街示众的瑟曦'
             }
         ];
         var arr = ['王保安画圈换钓鱼台七号院豪宅', '中国禁止进口洋垃圾', '西安体育学院原副院长被双开', '女大学生地铁晕倒 手机被顺走', '武汉一小学禁止女教师素颜上课'];
@@ -87,34 +99,46 @@ define(["jquery", "template"], function($, template) {
 
         $.each(data.scrollText, function(i, ele) {
             var lis = ` <li>
-    <a href="#">
-        <strong>${ele.name}</strong>
-        <span>${ele.time}</span>
-        <span>${ele.text}</span>
-    </a>
-</li> `;
+                <a href="#">
+                    <strong>${ele.name}</strong>
+                    <span>${ele.time}</span>
+                    <span>${ele.text}</span>
+                </a>
+            </li> `;
             $('.scorll-ul').append(lis);
         });
         var $ul = $('.scorll-ul');
-        var countLi = $ul.children().length;
-        var liH = $ul.children().height();
-        var ulang = liH * countLi;
-        $('.scroll-arr .arr-up').on('click', function() {
-            var $this = $(this);
-            var top = $ul.position().top;
-            console.log(top);
-            if (top <= -(ulang - liH)) {
-                $ul.animate({
-                    "top": 0
-                }, 500);
-            } else {
-                $ul.stop().animate({
-                    "top": Math.ceil(top - $ul.children().height())
-                }, 500);
+        var countLi = $ul.children().length; //li的个数
+        var lis = $ul.children()
+        var liH = lis.height(); //li的高度
+        var index = 0;
+        $('.arr-up').on('click', function() {
+            CtrScroll(1);
+        })
+        $('.arr-down').on('click', function() {
+            CtrScroll(-1);
+        })
+        setInterval(function() {
+            CtrScroll(-1);
+        }, 2000);
+
+        function CtrScroll(n) {
+            n < 0 ? index-- : index++;
+            if (index < -(countLi - 1)) {
+                index = 0;
+            } else if (index > 0) {
+                index = -(countLi - 1);
             }
-
-
-
-        });
+            $ul.stop().animate({
+                'top': liH * index
+            })
+        }
     })();
+
+    /******************触摸弹出图层*********************/
+    (function() {
+
+    })();
+
+
 });
