@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- ws: 引入公共样式 -->
+    <title>title</title>
+<meta charset="utf-8">
+
+    <!-- we: 引入公共样式 -->
+</head>
+<body style="visibility:hidden;">
+    <img src="../images/1.JPG" />
+    <div id="user_info">
+        <script id="userInfo" type="text/html">
+            <h1>{{data.title}}</h1>
+            <p>{{data.name}}</p>
+        </script>
+    </div>
+    <!--ws: 公共Script -->
+    <script src="../vendor/require/require.min.js"></script>
+<script src="../conf/require.config.js"></script>
+
+    <!--we: 公共Script -->
+    <script>
+    //通过require的方式来引入需要的js
+      require( ['index'], function() {
+      });
+    </script>
+</body>
+
+</html>
