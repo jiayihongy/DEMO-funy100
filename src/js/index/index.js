@@ -137,6 +137,35 @@ define(["jquery", "template"], function($, template) {
 
     /******************触摸弹出图层*********************/
     (function() {
+        var $father = $('.active-table ol');
+        var $hezi = $('.pic')
+        $father.on('mouseenter', 'li', function() {
+                var $this = $(this);
+                var top = $this.position().top;
+                var left = $this.position().left;
+                var width = $this.width();
+                var heigth = $this.height();
+                var src = $this.find('img').attr('src');
+                if (!!$this.children().length) {
+                    $hezi.css({
+                        'left': left + width + 10,
+                        'top': top - heigth + 10
+                    });
+                    $hezi.find('img').attr('src', src);
+                    $hezi.fadeIn(100);
+
+
+
+                }
+
+            })
+            .on('mouseleave', 'li', function() {
+                $hezi.fadeOut(100)
+            })
+
+
+
+
 
     })();
 
