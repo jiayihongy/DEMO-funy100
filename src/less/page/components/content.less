@@ -455,39 +455,42 @@
             padding: 13px 13px 0;
             border-radius: 12px;
             background: #f8f8f8;
-
             .big-img {
               height: 133px;
               width: 223px;
-              background: url("../../images/others/images/onebai_15.png") no-repeat center center;
+              position: relative;
+              li{
+                height: 133px;
+                width: 223px;
+                position: absolute;
+                top:0;
+                left:0;
+                a{
+                  display: block;
+                  width: inherit;
+                  height: inherit;
+                  img{
+                    width: inherit;
+                    height: inherit;
+                  }
+                }
+              }
             }
 
             .small-imgs {
-              margin-left: 13px;
-              padding: 2px 0;
+              margin-left: 7px;
+              
 
               li {
                 width: 54px;
                 height: 30px;
-                position: relative;
-
-                &:after {
-                  content: '';
-                  position: absolute;
-                  top: 0;
-                  left: 0;
-                  width: 100%;
-                  height: 100%;
-                  outline: 3px solid @ahclr;
-                  display: none;
-                }
-
-                &:hover:after {
-                  display: block;
+                border: 3px solid #f8f8f8;
+                &.active{
+                  border-color: @ahclr;
                 }
 
                 &+li {
-                  margin-top: 19px;
+                  margin-top: 13px;
                 }
 
                 img {

@@ -168,6 +168,34 @@ define(["jquery", "template"], function($, template) {
 
 
     })();
+    /******************轮播图*********************/
+    (function() {
 
+        var $bigPic = $('.big-img').children();
+        var $smallPic = $('.small-imgs').children();
+        var length = $smallPic.length;
+
+        $('.small-imgs').on('click', 'li', function() {
+
+            var $this = $(this);
+            $this.addClass('active').siblings().removeClass('active');
+            var index = $this.index();
+            var $daPic = $($bigPic[index]);
+            $daPic.css('z-index', 2).fadeIn().siblings().css('z-index', 1).fadeOut();
+
+        });
+        $('.small-imgs').on('mouseenter', 'li', function() {
+            clearInterval(timer);
+        }).
+        on('mouseleave', 'li', function() {
+            timer = setInterval(function() {
+                console.log(66);
+            }, 10)
+        })
+        $($smallPic[0]).trigger('click');
+        var timer = setInterval(function() {
+            console.log(44);
+        }, 10)
+    })();
 
 });
